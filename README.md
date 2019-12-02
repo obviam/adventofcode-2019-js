@@ -1,4 +1,7 @@
 # adventofcode-2019-js
+
+My take on [https://adventofcode.com/2019](https://adventofcode.com/2019) using JavaScript
+
 Advent of code 2019 Javascript
 
 Run the tests:
