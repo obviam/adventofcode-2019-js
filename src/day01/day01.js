@@ -22,8 +22,6 @@ const executeAndPrint = () => {
     console.log('Result star/day 2/01: ' + star2);
 }
 
-executeAndPrint();
-
 exports.calculateFuelRequired = calculateFuelRequired;
 exports.calculateFuelWithFuel = calculateFuelWithFuel;
 exports.calculate = calculate;
