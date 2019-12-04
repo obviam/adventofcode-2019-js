@@ -16,13 +16,18 @@ const calculate = (input, calculator) => {
 }
 
 const executeAndPrint = () => {
+    console.log('*'.repeat(60));
+    console.log('* > Day 1 <');
+    console.log('*'.repeat(60));
     const star1 = calculate(Utils.readInput('day01/input.01.txt'), calculateFuelRequired);
     const star2 = calculate(Utils.readInput('day01/input.01.txt'), calculateFuelWithFuel);
-    console.log('Result star/day 1/01: ' + star1);
-    console.log('Result star/day 2/01: ' + star2);
+    console.log('* Result star/day 1/01: ' + star1);
+    console.log('* Result star/day 2/01: ' + star2);
+    console.log('*'.repeat(60));
 }
 
 exports.calculateFuelRequired = calculateFuelRequired;
 exports.calculateFuelWithFuel = calculateFuelWithFuel;
 exports.calculate = calculate;
-exports.execute = executeAndPrint();
+
+executeAndPrint();
