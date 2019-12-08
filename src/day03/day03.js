@@ -45,7 +45,7 @@ const segmentFromCommand = (command, origin) => {
   }
 };
 
-const compute = (input1, input2) => {
+const computeShortestDistance = (input1, input2) => {
   const segments1 = createSegments(input1);
   const segments2 = createSegments(input2);
   const distances = [];
@@ -105,7 +105,7 @@ const executeAndPrint = () => {
   console.log('* > Day 3 <');
   console.log('*'.repeat(60));
   // preflight
-  const star1 = compute(input1, input2);
+  const star1 = computeShortestDistance(input1, input2);
   console.log('* Result star/day 1/03: ' + star1);
   // console.log('* Result star/day 2/03: ' + findPair(originalInput));
   console.log('*'.repeat(60));
@@ -114,5 +114,5 @@ const executeAndPrint = () => {
 executeAndPrint();
 
 exports.intersect = intersect;
-exports.compute = compute;
+exports.computeShortestDistance = computeShortestDistance;
 exports = { Segment: Segment, Point: Point };
