@@ -13,6 +13,10 @@ class Segment {
     this.pointA = pointA;
     this.pointB = pointB;
   }
+
+  getLength() {
+    return Math.abs(this.pointA.x - this.pointB.x) + Math.abs(this.pointA.y - this.pointB.y);
+  }
 }
 
 const createSegments = input => {
@@ -61,6 +65,33 @@ const computeShortestDistance = (input1, input2) => {
   return Math.min(...distances);
 };
 
+const computeFewestSteps = (input1, input2) => {
+  const segments1 = createSegments(input1);
+  const segments2 = createSegments(input2);
+  const stepsStack = [];
+  var stepsA = 0;
+  
+  for (let i = 0; i < segments1.length; i++) {
+    var stepsB = 0;
+    const s1 = segments1[i];
+    for (let j = 0; j < segments2.length; j++) {
+      const s2 = segments2[j];
+      if (intersect(s1, s2)) {
+        const intersection = intersect(s1, s2);
+        // distance to intersection
+        const tmpDistToIntersection  = Math.abs(s1.pointA.x - intersection.x) + Math.abs(s1.pointA.y - intersection.y);
+        stepsB += Math.abs(s2.pointA.x - intersection.x);
+        stepsB += Math.abs(s2.pointA.y - intersection.y);
+        stepsStack.push(stepsA + tmpDistToIntersection + stepsB);
+      } else {
+        stepsB += s2.getLength();
+      }
+    };
+    stepsA += s1.getLength();
+  };
+  return Math.min(...stepsStack);
+};
+
 const intersect = (segment1, segment2) => {
   // these are perpendicular lines, segment1 being vertical | and segment2 being horizontal -
   if (
@@ -104,10 +135,10 @@ const executeAndPrint = () => {
   console.log('*'.repeat(60));
   console.log('* > Day 3 <');
   console.log('*'.repeat(60));
-  // preflight
   const star1 = computeShortestDistance(input1, input2);
+  const star2 = computeFewestSteps(input1, input2);
   console.log('* Result star/day 1/03: ' + star1);
-  // console.log('* Result star/day 2/03: ' + findPair(originalInput));
+  console.log('* Result star/day 2/03: ' + star2);
   console.log('*'.repeat(60));
 }
 
@@ -115,4 +146,5 @@ executeAndPrint();
 
 exports.intersect = intersect;
 exports.computeShortestDistance = computeShortestDistance;
+exports.computeFewestSteps = computeFewestSteps;
 exports = { Segment: Segment, Point: Point };
